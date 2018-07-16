@@ -76,7 +76,6 @@ public class DispatchEventCenter {
                 break;
 
             case WXEventCenter.EVENT_CAMERA_UPLOADIMAGE:
-            case WXEventCenter.EVENT_CAMERA_CHOOSEIMAGE:
             case WXEventCenter.EVENT_CAMERA_PATH:
             case WXEventCenter.EVENT_CAMERA:
                 reflectionClazzPerform("com.benmu.framework.event.camera.EventCamera", context
