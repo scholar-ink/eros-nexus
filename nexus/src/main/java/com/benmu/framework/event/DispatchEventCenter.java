@@ -106,11 +106,20 @@ public class DispatchEventCenter {
             case WXEventCenter.EVENT_TABBAR_SHOWBADGE:
             case WXEventCenter.EVENT_TABBAR_HIDBADGE:
             case WXEventCenter.EVENT_TABBAR_OPENPAGE:
+            case WXEventCenter.EVENT_TABBAR_SETTABBAR:
+            case WXEventCenter.EVENT_TABBAR_WATCHINDEX:
+            case WXEventCenter.EVENT_TABBAR_CLEARTABBARINFO:
                 reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
                         , weexEventBean
                         , "", weexEventBean.getKey());
                 break;
 
+            case WXEventCenter.EVENT_UPDATE_BUNDLE:
+            case WXEventCenter.EVENT_DOWNLOAD_BUNDLE:
+                reflectionClazzPerform("com.benmu.framework.event.UpdateJsBundleEvent", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
             case WXEventCenter.EVENT_COMMUNICATION_SMS:
             case WXEventCenter.EVENT_COMMUNICATION_CONTACTS:
                 reflectionClazzPerform("com.benmu.framework.event.EventCommunication", context
@@ -135,7 +144,8 @@ public class DispatchEventCenter {
     }
 
 
-    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean weexEventBean, String errosMsg) {
+    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean
+            weexEventBean, String errosMsg) {
         reflectionClazzPerform(weexEventBean.getKey()
                 , context
                 , weexEventBean
@@ -152,7 +162,8 @@ public class DispatchEventCenter {
         }
     }
 
-    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean weexEventBean, String errosMsg, String type) {
+    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean
+            weexEventBean, String errosMsg, String type) {
         EventGate event = EventGateFactory.getEventGate(clazzName);
         String params = weexEventBean.getJsParams();
         if (null != event) {
